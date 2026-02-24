@@ -1,3 +1,10 @@
+'use strict';
+
+const isObject = (value) => {
+    return typeof value === 'object' &&
+           value !== null;
+};
+
 /**
  * Функция filterByKeys, которая принимает объект obj и массив ключей keys,
  * и возвращает новый объект, содержащий только те ключи из исходного объекта,
@@ -13,6 +20,13 @@
  * @returns {Object}
  */
 const filterObjectByKeys = (obj, keys) => {
+    if (!isObject(obj)) {
+        throw new TypeError('Первый аргумент должен быть объектом(');
+    }
+
+    if (!Array.isArray(keys)) {
+        throw new TypeError('Второй аргумент должен быть массивом(');
+    }
     const result = {};
     for (const key of keys) {
         if (key in obj) {
